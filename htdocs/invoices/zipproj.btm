@@ -1,0 +1,49 @@
+@echo off
+rem **********************************************
+rem  Zips source code for a source tree
+rem  zip is put in the bkup directory
+rem **********************************************
+
+setlocal
+
+rem === get name of this dir ===
+set base=%_CWP
+
+do forever
+   set idx=%@INDEX[%base,\]
+   if %idx == -1 leave
+   set idx=%@eval[%idx+1]
+   set base=%@instr[%idx,,%base]
+enddo
+
+set tim=%_year-%_month-%_day
+set charval=96
+
+set branch=%@SUBSTR[%@EXECSTR[git branch | grep \*],2]
+if "%branch" != "" set branch=_%branch
+
+if not exist bkup mkdir bkup
+
+:loop1
+   set charval=%@eval[%charval+1]
+   set name=%base%%branch%%tim%%@char[%charval].ZIP
+   if not exist %name goto next1
+   echo %name exists already
+goto loop1
+
+:next1
+   if not exist bkup\%name goto break1
+   echo bkup\%name exists already
+goto loop1
+
+:break1
+echo Zipping to %name
+
+rem --- note ---
+rem Customize the zip command below as needed for dir & file exclusions
+
+zip -r %name * -x zipproj.btm \*.zip \*.err \*.exe \*.pdf \*.xml *bkup/\*
+
+move /D %name bkup
+
+endlocal

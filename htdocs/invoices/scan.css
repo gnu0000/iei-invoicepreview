@@ -1,0 +1,143 @@
+
+@import "common.css";
+
+:root {
+   --color-page-bg:     #666;
+   --color-header-bg:   #3C6184;
+   --color-header-text: white;
+   --color-card-bg:     #444;
+   --color-results:     #eee;
+   --color-results-bg:  #666;
+   --color-text-bg:     #ccc;
+   --color-radio:       #ddf;
+   --color-divider:     black;
+   --color-links:       white;
+}
+
+html, body {
+   font-family: Arial,Helvetica,sans-serif;
+   background: var(--color-page-bg);
+   color: #eee;
+}
+
+a:link, a:visited, a:active {
+   color: var(--color-links);
+   text-decoration: none;
+}
+
+h1 {
+   color: var(--color-header-text);
+   color: white;
+   padding: 0.25rem 0 1rem 1.75rem;
+}
+
+h3 {
+   color: var(--color-header-text);
+   padding: 0 0 0 1.75rem;
+}
+
+
+.left, .right {
+   position: relative;
+   width: calc(100% / 2);
+   height:100%;
+   float: left;
+   overflow-y: scroll;
+}
+
+.right {
+   overflow-y: hidden;
+   overflow-x: hidden;
+}
+
+iframe {
+   width: 100%;
+   height: 100%;
+   border: 0;
+   overflow-y: scroll;
+   background: var(--color-card-bg);
+}
+
+.card {
+   position: relative;
+   background-color: var(--color-card-bg);
+   box-shadow: 4px 4px 0 0 rgba(0,0,0,.1);
+   margin: auto;
+   margin-top: 40px;
+   min-width: 35em;
+   max-width: 90em;
+   padding: 1em;
+   padding-top: 3em;
+   border-radius: 0.25em;
+   font-size: 1rem;
+}
+
+.showfeedback {
+   position: absolute;
+   top: 0.5em;
+   left: 1em;
+}
+
+.showall {
+   position: absolute;
+   top: 0.5em;
+   right: 1em;
+}
+
+
+.test {
+   margin-bottom: 1rem;
+   border-bottom: 1px solid var(--color-divider);
+}
+
+.test .result {
+   margin-bottom: .5rem;
+}
+
+.test .result a {
+   padding: 1px .5em;
+   margin: 2px 0.5em;
+   border-radius: 0.25em;
+   color: var(--color-results);
+   background: var(--color-results-bg);
+}
+
+.test .result a.acct {
+    display: inline-block;
+    font-size: 1.1em;
+    width: 9rem;
+    padding: 2px;
+    margin: 0;
+    margin-left: 2rem;
+    background: var(--color-card-bg);
+}
+
+.statusinfo {
+    display: none;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
+.statusinforow {
+   font-size: .8rem;
+   pading-left: 3em;
+   color: var(--color-radio);
+}
+
+.statusinforow span {
+   display: inline-block;
+   width: 7rem;
+}
+
+.statustext {
+   margin-top: 1rem;
+}
+
+.statustext textarea {
+   width: 100%;
+   background: var(--color-text-bg);
+   border-radius: .4em;
+   display: none;
+}
+
+

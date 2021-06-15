@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+      <meta http-equiv="Pragma" content="no-cache" />
+      <meta http-equiv="Expires" content="0" />
+      <link href="all.css?i=1" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="bubbles.js"></script>
+      <script src="all.js"></script>
+      <title>Invoice Index</title>
+   </head>
+   <body>
+      <template id="row">
+         <tr>
+            <td>
+               <a href="https://adept.{env}.gainesville.infiniteenergy.com/adept/accountmain.aspx?a={acct}" class="acct" target="_blank">{InvoiceNumber}</a>
+            </td>
+            <td>
+               <a href="/invoices/samples/{InvoiceNumber}.pdf"                                      target="_blank">PDF</a>
+               <a href="/invoices/invoice.html?j=4&url=/cgi-bin/preview.pl/invoice/{InvoiceNumber}" target="_blank">Preview</a>
+               <a href="/cgi-bin/preview.pl/invoice/{InvoiceNumber}"                                target="_blank">XML</a>
+            </td>
+            <td>{date}</td>
+            <td><span class="Market {Market}">{Market}<span></td>
+            <td><span class="type {bt}">{bt}<span></td>
+         </tr>
+      </template>
+      <div class="header">
+         <canvas class="bubbles" id="canvas" width="1920" height="150"></canvas>
+         <div class="logo">
+            <a href="/invoices">
+               <span class="I">I</span><span class="E">E</span>
+            </a>
+         </div>
+         <h1>Inv<span>o</span>ice Index</h1>
+         <h2>Invoices matching search criteria</h2>
+         <div class="doctemplate"></div>
+      </div>
+      <div class="content">
+         <div class="left">
+            <div class="card">
+               <div class="spinner"></div>
+
+               <div class="controls">
+                  <input type="text" class="search" placeholder="Enter Invoice #" />
+                  <select class="dates"></select>
+                  <select class="markets"></select>
+               </div>
+               <div class="checks">
+                  <div class="typechecks">
+                     <h3 class="label">Types:</h3>
+                     <span data-type="all"                    >All</span>
+                     <span data-type="IndividualInvoice"      >Individual</span>
+                     <span data-type="IndividualBudgetInvoice">Budget</span>
+                     <span data-type="InfiniteAdvanceInvoice" >Advance</span>
+                     <span data-type="TierIndividualInvoice"  >Tier</span>
+                     <span data-type="GroupInvoice"           >Group</span>
+                  </div>
+                  <div class="statechecks">
+                     <h3 class="label">Status:</h3>
+                     <span data-state="all"        >All</span>
+                     <span data-state="pastdue"    >PastDue</span>
+                     <span data-state="credit"     >Credit</span>
+                     <span data-state="arrangement">PayArrangement</span>
+                  </div>
+               </div>
+               <div class="index">
+                  <table>
+                     <thead>
+                        <tr>
+                           <th>Invoice Number</th>
+                           <th>Links</th>
+                           <th>Date</th>
+                           <th>Mkt</th>
+                           <th>Type</th>
+                        </tr>
+                     </thead>
+                     <tbody id="rows">
+                     </tbody>
+                     <tfoot>
+                        <tr>
+                           <td colspan=10></td>
+                        </tr>
+                     </tfoot>
+                  </table>
+               </div>
+            </div>
+         </div>
+         <div class="right">
+            <iframe src="javascript:0;" />
+         </div>
+      </div>
+   </body>
+</html>

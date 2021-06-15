@@ -1,0 +1,281 @@
+
+@import "common.css";
+
+:root {
+   --color-page-bg:     #666;
+   --color-header-bg:   #3C6184;
+   --color-header-text: white;
+   --color-card-bg:     #444;
+   --color-results:     #eee;
+   --color-results-bg:  #666;
+   --color-text-bg:     #ccc;
+   --color-radio:       #ddf;
+   --color-divider:     black;
+   --color-links:       white;
+}
+
+html, body {
+   color: #eee;
+}
+
+h1 {
+   color: var(--color-header-text);
+   color: white;
+   padding: 0.25rem 0 1rem 1.75rem;
+}
+
+h3 {
+   color: var(--color-header-text);
+   padding: 0 0 0 1.75rem;
+}
+
+.header .doctemplate {
+    top: 1.5em;
+}
+
+.content {
+   display: flex;
+}
+
+.left, .right {
+   position: relative;
+   height:100%;
+   float: left;
+   overflow-y: scroll;
+}
+
+.left {
+   width: 45%;
+   max-width: 55em;
+}
+
+.right {
+   flex: 1;
+   overflow-y: hidden;
+   overflow-x: hidden;
+}
+
+iframe {
+   width: 100%;
+   height: 100%;
+   border: 0;
+   overflow-y: scroll;
+   background: var(--color-card-bg);
+}
+
+.card {
+   background-color: var(--color-card-bg);
+   box-shadow: 4px 4px 0 0 rgba(0,0,0,.1);
+   margin: auto;
+   margin-top: 40px;
+   width: 90%;
+   min-width: 25em;
+   max-width: 90em;
+   padding: 1em;
+   border-radius: 0.25em;
+   font-size: 1rem;
+}
+
+.controls {
+   display: flex;
+   font-size: 1.1em;
+}
+
+.search {
+   flex:1;
+   padding: 0.25em;
+   border-radius: 0.3em;
+   min-width: 6em;
+   margin: auto;
+   margin-left: 0.8em;
+}
+
+.dates {
+   height: 2em;
+   margin: auto;
+   margin-left: 1em;
+   border-radius: 0.3em;
+}
+
+.markets {
+   height: 2em;
+   margin: auto;
+   margin-left: 1em;
+   margin-right: 0.8em;
+   border-radius: 0.3em;
+}
+
+.checks {
+   flex-grow: 1;
+   color: var(--color-text);
+   font-size: 0.9em;
+   padding-left: 1em;
+   margin: 5px 0 3em 0;
+   color: #aaa;
+}
+
+.checks h3 {
+   display: inline-block;
+   margin: 0;
+   padding: 3px 5px 3px 0;
+   color: white;
+}
+
+.checks span {
+   display: inline-block;
+   font-size: .9em;
+   padding: 1px 3px 1px 3px;
+   margin: 3px;
+   border: 1px solid #aaa;
+   border-radius: 5px;
+   cursor: pointer;
+}
+
+.checks span.active {
+   color: var(--color-card-bg);
+   background: #ccc;
+   border: 1px solid #ccc;
+}
+
+
+.dates select {
+   width: 9em;
+   border-radius: 0.3em;
+   padding: 0.35em;
+   margin: 1em 1em 0 0;
+}
+
+.index table {
+   border-collapse: collapse;
+   margin: 1em;
+   width: calc(100% - 2em);
+   color: var(--color-text);
+}
+
+.index table thead {
+   border-bottom: 2px solid var(--color-table);
+}
+
+.index table tfoot {
+   border-top: 2px solid var(--color-table);
+   font-size: 0.8em;
+}
+
+.index table tfoot td:first-child {
+   text-align: right;
+   padding: 4px 0 0 0;
+}
+
+.index table tbody:before {
+   content: "-";
+   display: block;
+   line-height: 0.25em;
+   color: transparent;
+}
+
+.index table th {
+   text-align: left;
+}
+
+.index table td {
+   padding: 3px 0;
+    white-space: nowrap;
+
+}
+
+.index table td:first-child {
+   font-size: 1.15em;
+}
+
+.index table td:last-child {
+   text-align: center;
+}
+
+.index table td:last-child span {
+   display: block;
+   padding: 2px;
+   margin: 0;
+   margin-left: 8px;
+   border-radius: 5px;
+   width: 1em;
+   height: 1em;
+   text-align: center;
+}
+
+.index span.type.I {
+   border: 2px solid #59c959;
+   background: #2c612c;
+}
+.index span.type.B {
+   border: 2px solid #d4a14e;
+   background: #664d24;
+}
+.index span.type.A {
+   border: 2px solid #4e8bd4;
+   background: #203b5c;
+}
+.index span.type.G {
+   border: 2px solid Violet;
+   background: RebeccaPurple;
+}
+
+.index table td a {
+   padding: 1px .5em;
+   margin: 2px 0.5em;
+   border-radius: 0.25em;
+   color: #eee;
+   background: var(--color-page-bg);
+}
+
+.index table td a.acct {
+   font-size: 1.1em;
+   padding: 3px 3px 3px 0;
+
+   margin: 2px 0.5em 2px 0;
+   background: #444;
+}
+
+.index table td a.acct: hover {
+   text-decoration: underline;
+}
+
+
+.index table td .clip {
+   width: 16px;
+   height: 16px;
+   cursor: copy;
+}
+
+input[type="checkbox"] {
+    position: relative;
+    top: 2px;
+}
+
+@media (max-width: 1370px){
+   th:nth-child(4), td:nth-child(4) {
+      display: none;
+   }
+}
+
+@media (max-width: 1300px){
+   th:nth-child(3), td:nth-child(3) {
+      display: none;
+   }
+}
+
+@media (max-width: 1050px){
+   td a:nth-child(3) {
+      display: none;
+   }
+}
+
+@media (max-width: 850px){
+   .card {
+      font-size: 0.9em;
+      padding-left: 0;
+      padding-right: 0;
+   }
+   input, select {
+      font-size: 0.8em;
+   }
+}

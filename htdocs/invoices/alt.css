@@ -1,0 +1,131 @@
+
+@import "common.css";
+
+a:link,
+a:visited,
+a:active {
+  color: #33a;
+  text-decoration: none;
+}
+
+.card {
+   width: 90%;
+   max-width: 200em;
+   background: #777;
+}
+
+h1 {
+   color: white;
+   padding: 0.25rem 0 1rem 1.75rem;
+}
+
+h3 {
+   color: white;
+   padding: 0 0 0 1.75rem;
+}
+
+.search input {
+   font-size: 1.2em;
+   padding: 0.5em;
+   margin: 1em 0 0 1em;
+   border-radius: 0.3em;
+   width: 20em;
+}
+
+.group {
+   border: 0;
+   margin: 0;
+}
+
+.group h3 {
+   font-size: 1.5em;
+   color: white;
+   margin: 0.75em;
+   margin-top: 2em;
+   border-bottom: 4px solid lightgray;
+   padding: 0;
+}
+
+.block {
+   display: inline-block;
+   width: 20em;
+   height: 11em;
+   border-radius: 0.75em;
+   /*border: 2px solid lightgray;*/
+   border: 2px solid #0070BE;
+   padding: 0;
+   overflow: hidden;
+   margin: 0.5em;
+   background: #DDD;
+}
+
+.block h3 {
+   font-size: 1rem;
+   text-align: center;
+   background: #0070BE;
+   color: white;
+   padding: 3px;
+   margin: 0;
+}
+
+.block table {
+   font-size: 0.9em;
+   width: 100%;
+}
+
+
+.block td {
+   padding: 0.2em;
+}
+
+.block td:nth-child(even) {
+   font-weight: bold;
+}
+
+.block td:nth-child(odd) {
+   text-align: right; 
+}
+
+
+.buttons {
+   display: flex;
+   margin-top: 1.4em;
+   padding: 0 2em;
+}
+
+.button {
+   flex: 1;
+   text-align: center; 
+}
+
+.button a.b {
+   padding: 0.4em 1em;
+   border: 2px solid #0070BE;
+   border-radius: 0.5em;
+   font-weight: bold;
+   background: white;
+}
+
+.button a.x {
+   position: relative;
+   top: 0.75em;
+   font-size: 0.8em;
+}
+
+.spinner {
+   display: inline-block;
+   width: 25px;
+   height: 25px;
+   border: 4px solid rgba(220,220,220,0.35);
+   border-top: 4px solid #3498db;
+   border-radius: 50%;
+   margin: -13px 4px;
+   animation: spin .7s linear infinite;
+   background-clip: content-box;
+   z-index: 99;
+}
+
+@keyframes spin {
+  0%   {transform: rotate(0deg)  }
+  100% {transform: rotate(360deg)}
+}

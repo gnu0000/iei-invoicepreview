@@ -1,0 +1,126 @@
+
+@import "common.css";
+
+.card {
+   width: 90%;
+   max-width: 90em;
+   min-width: 58em;
+}
+
+.controls {
+   display: flex;
+}
+
+.search {
+}
+
+.search input {
+   font-size: 1.1em;
+   padding: 0.35em;
+   margin: 1em 0 0 1em;
+   border-radius: 0.3em;
+   width: 26em;
+}
+
+.checks {
+   flex-grow: 1;
+   color: var(--color-text);
+   font-size: 0.9em;
+   padding-left: 1em;
+   margin: 5px 0 3em 0;
+}
+
+.checks span {
+   padding: 3px 8px 3px 0;
+}
+
+.dates {
+}
+
+.dates select {
+   width: 9em;
+   border-radius: 0.3em;
+   padding: 0.35em;
+   margin: 1em 1em 0 0;
+}
+
+
+.index table {
+   border-collapse: collapse;
+   margin: 1em;
+   width: calc(100% - 2em);
+   color: var(--color-text);
+}
+
+.index table thead {
+   border-bottom: 2px solid var(--color-table);
+}
+
+.index table tfoot {
+   border-top: 2px solid var(--color-table);
+   font-size: 0.8em;
+}
+
+.index table tfoot td:first-child {
+   text-align: right;
+   padding: 4px 0 0 0;
+}
+
+.index table tbody:before {
+   content: "-";
+   display: block;
+   line-height: 0.25em;
+   color: transparent;
+}
+
+.index table th:first-child {
+   text-align: left;
+}
+
+.index table th:last-child {
+   text-align: right;
+}
+
+.index table td:nth-child(4) {
+    padding-right: 0.75em;
+    white-space: nowrap;
+}
+
+.index table td {
+   padding: 3px 0;
+}
+
+.index table td:first-child {
+   font-size: 1.15em;
+}
+
+.index table td:last-child {
+   text-align: right;
+}
+
+.index table td a {
+   padding: 1px .5em;
+   margin: 2px 0.5em;
+   border-radius: 0.25em;
+   color: #eee;
+   background: var(--color-page-bg);
+}
+
+.index table td a.acct {
+   font-size: 1.1em;
+   padding: 3px 3px 3px 0;
+
+   margin: 2px 0.5em 2px 0;
+   background: #444;
+}
+
+.index table td .clip {
+   width: 16px;
+   height: 16px;
+   cursor: copy;
+}
+
+input[type="checkbox"] {
+    position: relative;
+    top: 2px;
+}

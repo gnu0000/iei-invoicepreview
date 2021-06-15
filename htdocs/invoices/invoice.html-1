@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+      <meta http-equiv="Pragma" content="no-cache" />
+      <meta http-equiv="Expires" content="0" />
+      <link href="invoice.css?j=4" rel="stylesheet" />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="invoice.js?j=4"></script>
+      <title>Invoice Preview</title>
+   </head>
+   <body>
+      <div class="header">
+         <a href="/invoices"><img src="images/logo.png" alt="logo" /></a>
+         <h1>Invoice Preview</h1>
+         <h2>Invoice: {{InvoiceDetails @InvoiceNumber}}</h2>
+         <div class="doctemplate">{{DocumentInfo @DocumentTemplate}}</div>
+      </div>
+      <div class="content">
+         <div class="card">
+            <div class="source hidden">
+               <h1>Invoice XML Source</h1>
+               <h2>From a URL</h2>
+               <input placeholder="url"></input>
+               <button class="fromurl">Go!</button>
+
+               <h2>From a Local File</h2>
+               <div class="droptarget">Drop XML File Here</div>
+
+               <h2>From the Clipboard</h2>
+               <textarea></textarea>
+               <div class="buttonarea">
+                  <button class="fromtext">Go!</button>
+               </div>
+            </div>
+            <div class="render hidden">
+               <div class="top">
+                  <div class="customer">
+                     <div>{{InvoiceAccountInfo Account @AccountName}}</div>
+                     <div>{{MailingAddress @AddressLine1}}</div>
+                     <div>{{MailingAddress @AddressLine2}}</div>
+                     <div>{{MailingAddress @AddressLine3}}</div>
+                     <div>{{InvoiceAccountInfo Account @EmailAddress}}</div>
+                  </div>
+                  <div class="account">
+                     <div class="head accountnum">
+                        Account # {{InvoiceAccountInfo Account @AccountNumber}}
+                        <img src="images/clip-mini.png" alt="logo" class="copy-acct" data-text="{{InvoiceAccountInfo Account @AccountNumber}}"/>
+                     </div>
+                     <table class="summary">
+                        <tr>
+                           <td>Due Date:        </td><td>{{InvoiceDetails @DueDate}}</td>
+                           <td>Therms used:     </td><td>{{UsageInfo @TotalUsage}}  </td>
+                        </tr>
+                        <tr>
+                           <td>Current Charges: </td><td>{{InvoiceAmountSections CurrentCharges @Amount}}</td>
+                           <td>Date issued:     </td><td>{{InvoiceDetails @BillDate}}                    </td>
+                        </tr>
+                        <tr>
+                           <td>Past-due balance:</td><td>{{InvoiceAmountSections BalanceForward @Amount}}</td>
+                           <td>Rate Type:       </td><td>{{ContractInfo @RateCode}}                      </td>
+                        </tr>
+                        <tr>
+                           <td>Total Amount Due:</td><td>{{InvoiceAmountSections TotalAmountDue @Amount}}</td>
+                           <td>Rate expiration  </td><td>{{ContractInfo @AgreementEndDate}}              </td>
+                        </tr>
+                     </table>
+                  </div>
+               </div>
+               <h2>MESSAGES</h2>
+               <div class="messages">
+               </div>
+               <h2>REMITTANCE MESSAGE</h2>
+               <div class="remittance">
+               </div>
+               <div class="utility"></div>
+               <div class="deposit">
+                  <span>Deposit on File: ${{InvoiceTotals @DepositBalance}}</span>
+               </div>
+               <div class="cdgslist">
+               </div>
+               <div class="finalamounts">
+               </div>
+            </div>
+         </div>
+      </div>
+      <template id="utility-ga">
+         <h2>UTILITY INFORMATION</h2>
+         <h3>AGL # {{VendorAccount @ExternalVendorAccountNumber}}</h3>
+         <div class="meter meter-ga">
+            <table>
+               <tr>
+                  <th>Meter #</th>
+                  <th>Read begin</th>
+                  <th>Read end</th>
+                  <th>Previous meter read</th>
+                  <th>Current meter read</th>
+                  <th>CCFs used</th>
+                  <th>BTU Factor</th>
+                  <th>Usage</th>
+               </tr>
+            </table>
+         </div>
+      </template>
+      <template id="utility-fl">
+         <h2>UTILITY INFORMATION</h2>
+         <div class="meter meter-fl">
+            <table>
+               <tr>
+                  <th>Utility</th>
+                  <th>Utility #</th>
+                  <th>Read Date</th>
+                  <th>Usage</th>
+               </tr>
+            </table>
+         </div>
+      </template>
+      <template id="meterread-ga">
+         <tr class="meterread">
+            <td>{meterNum}</td>
+            <td>{{@ReadBeginDate}}</td>
+            <td>{{@ReadEndDate}}</td>
+            <td>{{@PreviousReadAmount}} <span>{{@PreviousReadSource}}</span></td>
+            <td>{{@ReadAmount}}         <span>{{@ReadSource}}</span></td>
+            <td>{{@UsageVolume}}</td>
+            <td>{{@ConversionFactor}}</td>
+            <td>{{@Usage}} Therms</td>
+         </tr>
+      </template>
+      <template id="meterread-fl">
+         <tr class="meterread">
+            <td>{utility}</td>
+            <td>{accountNum}</td>
+            <td>{{@ReadEndDate}}</td>
+            <td>{{@Usage}} Therms</td>
+         </tr>
+      </template>
+      <template id="cdgs">
+         <div class="cdgs">
+            <h2>{description}</h2>
+            <h3 class="days ga">{{ConstituentAccounts Account @ReadBeginDate}} - {{ConstituentAccounts Account @ReadEndDate}} ({{ConstituentAccounts Account @NumberOfDays}} Days)</h3>
+            <h3 class="days fl">Service Period: {{UsageInfo @ServicePeriodBeginDate}}</h3>
+            <div class="chargedetailgroups">
+            </div>
+         </div>
+      </template>
+      <template id="cdg">
+         <div class="cdg {hide} {{@Style}}">
+            <div class="iconarea"><img src="images/ie/{{@Icon}}.jpg" /></div>
+            <div class="infoarea">
+               <h3>{{@Title}}<span>{{@Company}}</span></h3>
+               <p>{{@Description}}</p>
+               <div class="cdarea"></div>
+               <div class="total"><span>${{@Amount}}</span></div>
+            </div>
+         </div>
+      </template>
+      <template id="cd">
+         <div class="cd {{@Style}}">
+            <span class="label" >{{@Description}}{{@ChargeDetails}}</span>
+            <span class="amount">${{@Amount}}</span>
+         </div>
+      </template>
+      <template id="finalamount">
+         <div class="finalamount">
+            <div class="label">{{@Label}}</div>
+            <div class="value">${{@Amount}}</div>
+         </div>
+      </template>
+      <template id="othercharges">
+         <div class="finalamount othercharges gray">
+            <div class="label">Other charges billed this invoice</div>
+            <div class="value">${otherCharges}</div>
+         </div>
+      </template>
+      <template id="message">
+         <div class="message {hide}">
+            <!--<span>{{@Location}}: </span>-->
+            <span>{{@Description}}</span>
+         </div>
+      </template>
+      <template id="miniheader">
+         <div class="miniheader">
+            <h2>Invoice: {{InvoiceDetails @InvoiceNumber}}</h2>
+            <div class="doctemplate">{{DocumentInfo @DocumentTemplate}}</div>
+            <a href="" class="launch" target="_blank"><img src="images/launch.png" alt="launch" /></a>
+            <!--<style>.card{margin-top: 45px}</style>-->
+         </div>
+      </template>
+
+      <template id="constituents">
+         <div class="constituents">
+            <div class="constituent head">
+               <div>Location</div>
+               <div>Meter Information</div>
+               <div>Supply Charges</div>
+               <div>Other Charges</div>
+            </div>
+         </div>
+      </template>
+      <template id="constituent">
+         <div class="constituent">
+            <div>
+               <ul>
+                  <li>{{.. @AccountName}}</li>
+                  <li>{{.. @Address}}</li>
+                  <li>IE #: {{@AccountNumber}}</li>
+                  <li>AGL #: {{@ExternalAccount}}</li>
+                  <li>Rate Expiration: {{@RateExpiration}}</li>
+               </ul>
+            </div>
+            <div>
+               <ul>
+                  <li>Meter #: {{.. @MeterNumber}}</li>
+                  <li>Status: {{.. @Status}}</li>
+                  <li>{{@ReadBeginDate}} - {{@ReadEndDate}} ({{@NumberOfDays}} Days)</li>
+                  <li>Meter End, {{@ReadSource}}: {{@ReadAmount}}</li>
+                  <li>CCF: {{@UsageVolume}}| BTU Factor: {{@ConversionFactor}}</li>
+                  <li>DDDC Factor: {{@DDDCFactor}}</li>
+               </ul>
+            </div>
+            <div>
+               <ul>
+                  <li>{{@Rate}} per therm</li>
+                  <li>Therms: {{@Usage}}</li>
+                  <li>Gas Supply: ${{@CommodityCharge}}</li>
+                  <li>DDDC: ${{@DDDC}}</li>
+                  <li>Service Fee: ${{@CSFeeAmount}}</li>
+               </ul>
+            </div>
+            <div>
+               <ul>
+                  <li>AGL Base Charges: ${{@DeliveryAmount}}</li>
+                  <li>Taxes:  ${{@TaxAmount}}</li>
+                  <li>Adjustments: ${{@AdjustmentAmount}}</li>
+                  <li>Total: ${{@TotalAmount}}</li>
+               </ul>
+            </div>
+         </div>
+      </template>
+   </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8"/>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+      <link href="index.css?i=111" rel="stylesheet"/>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="bubbles.js"></script>
+      <title>Invoice Previewer</title>
+   </head>
+   <body>
+      <div class="header">
+         <canvas class="bubbles" id="canvas" width="1920" height="150"></canvas>
+         <a href="/invoices">
+            <div class="logo">
+               <span class="I">I</span><span class="E">E</span>
+            </div>
+         </a>
+         <h1>Inv<span>o</span>ice Sample Viewer</h1>
+         <h2>Select invoice or invoice xml to view</h2>
+         <h3></h3>
+      </div>
+      <div class="content">
+         <div class="card">
+            <h2>
+               <a href="/invoices/all.html?i=1">All Invoices</a>
+               <span>(<a href="/invoices/all-expanded.html?i=1">alt version</a>)<span>
+            </h2>
+            <p>The full set of invoices run on the development server each day</p>
+            <h2><a href="/invoices/scan.html">Scan Results</a></h2>
+            <p>Invoices that meet certain test conditions</p>
+            <h2><a href="/invoices/special.html">Test Invoices</a></h2>
+            <p>These were specifically chosen to test various scenarios, or were asked for.<p>
+            <h2><a href="/invoices/invoice.html">Preview an Invoice XML File</a></h2>
+            <p>For development. This lets you view a new xml file in an invoice-like format.</p>
+         </div>
+      </div>
+   </body>
+   <script>
+      $(".header h1").on("click", "span", () => $('canvas').data("object").Enable(2));
+   </script>
+</html>
+

@@ -1,0 +1,4 @@
+@echo off
+echo updating scan.html ....
+@echo on
+c:\projects\invoices\util\InvoiceScanner.pl -db -all -html > scan.html

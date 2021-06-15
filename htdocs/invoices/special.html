@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8"/>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+      <link href="special.css" rel="stylesheet"/>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="special.js"></script>
+      <title>Invoice Previewer</title>
+   </head>
+   <body>
+      <div class="header">
+         <a href="/invoices"><img src="images/logo.png" alt="logo" /></a>
+         <h1>Invoice Sample Viewer</h1>
+         <h2>Select invoices xml to preview/compare</h2>
+      </div>
+      <div class="content">
+         <div class="card">
+            <div class="index"></div>
+            <br />
+            <h3><a href="invoice.html">Preview an Invoice XML File</a></h3>
+         </div>
+      </div>
+      <template id="heading">
+         <div class="heading">{label}</div>
+      </template>
+      <template id="entry">
+         <div class="entry">
+            <h3>{{InvoiceAccountInfo Account @AccountNumber}}</h3>
+            <table class="summary">
+               <tr>
+                  <td>Past-due:</td><td>{{InvoiceAmountSections BalanceForward @Amount}}</td>
+                  <td>Issued:  </td><td>{{InvoiceDetails @BillDate}}                    </td>
+               </tr>
+               <tr>
+                  <td>Charges: </td><td>{{InvoiceAmountSections CurrentCharges @Amount}}</td>
+                  <td>Due Date:</td><td>{{InvoiceDetails @DueDate}}                     </td>
+               </tr>
+               <tr>
+                  <td>Ammt Due:</td><td>{{InvoiceAmountSections TotalAmountDue @Amount}}</td>
+                  <td>Therms:  </td><td>{{ConstituentAccounts Account @Usage}}          </td>
+               </tr>
+            </table>
+            <div class="buttons">
+               <div class="button old">
+                  <a href="{root}-old.pdf" class="b" target="_blank">Old</a>
+                  <a href="{root}-old.xml" class="x" target="_blank">(xml)</a>
+               </div>
+               <div class="button new">
+                  <a href="{root}.pdf" class="b" target="_blank">New</a>
+                  <a href="{root}-new.xml" class="x" target="_blank">(xml)</a>
+               </div>
+               <div class="button preview">
+                  <a href="/invoices/invoice.html?url={root}-new.xml" class="b" target="_blank">Preview</a>
+                  <a href="{root}-new.xml" class="x" target="_blank">(xml)</a>
+               </div>
+            </div>
+         </div>
+      </template>
+      <template id="test">
+         <div class="test" id="test">
+            <div>
+               <h3>{label}</h3>
+               <p>{text}</p>
+               <button class="{bclass}"></button>
+            </div>
+         </div>
+      </template>
+   </body>
+</html>
+

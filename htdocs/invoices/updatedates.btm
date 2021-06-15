@@ -1,0 +1,6 @@
+@echo off
+echo updating scan.html ....
+@echo on
+c:\projects\invoices\util\InvoiceScanner.pl -db -date=2019-12-16 -html > scan1216.html
+c:\projects\invoices\util\InvoiceScanner.pl -db -date=2019-12-18 -html > scan1218.html
+c:\projects\invoices\util\InvoiceScanner.pl -db -date=2019-12-19 -html > scan1219.html

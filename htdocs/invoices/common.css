@@ -1,0 +1,228 @@
+:root {
+   --color-page-bg:     #666;
+   --color-header-bg:   #3C6184;
+   --color-header-text: white;
+   --color-card-bg:     #444;
+   --color-results:     #eee;
+   --color-results-bg:  #666;
+   --color-text-bg:     #ccc;
+   --color-radio:       #ddf;
+   --color-divider:     black;
+   --color-text:        white;
+   --color-links:       white;
+   --color-table:       white;
+}
+
+html, body {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+   width: 100%;
+   border: 0;
+   margin: 0;
+   font-family: Arial,Helvetica,sans-serif;
+   background-color: var(--color-page-bg);
+   box-sizing: border-box;
+   font-size: 0.9em;
+   overflow-x: hidden;
+}
+
+a:link, a:visited, a:active {
+  color: var(--color-links);
+  text-decoration: none;
+}
+
+.header {
+   flex: 0 0 75px;
+   background: linear-gradient(#093052, #3C6184);
+   padding: 2px;
+}
+
+.header canvas {
+   position: absolute;
+   margin: 0;
+   top: 0;
+   left: 0;
+   height: 80px;
+   width: 100%;
+   display: none;
+}
+
+.header h1 span {
+   cursor: pointer;
+}
+
+.header .logo {
+   display: inline-block;
+   margin-left: 0.5rem;
+   font-family: "Arial", Gadget, sans-serif;
+   font-size: 66px;
+   font-weight: bold;
+   letter-spacing: -4px;
+   font-style: italic;
+
+   transform: skew(0deg,0deg);
+   transition: transform .35s;
+}
+
+.header .logo:hover {
+   transform: skew(11deg,0deg);
+}
+
+.header .logo .I {color: #00aeef;}
+.header .logo .E {color: #8dc63f;}
+
+.content {
+   overflow-y: auto;
+   flex-grow: 1;
+}
+
+.header img {
+   position: relative;
+   left: 9px;
+   top: 7px;
+   margin: 0;
+   padding: 0;
+   width: 60px;
+   height: 60px;
+}
+
+.header h1 {
+   position: absolute;
+   font-size: 2.2em;
+   font-weight: bold;
+   top: 6px;
+   left: 6rem;
+   padding: 0;
+   margin: 0.20em;
+   min-width: 30em;
+   color: var(--color-header-text);
+}
+
+.header h2 {
+   position: absolute;
+   font-size: 1.3em;
+   font-weight: bold;
+   top: 2.6em;
+   left: 5.3em;
+   padding: 0;
+   margin: 0.25em;
+   font-weight: bold;
+   color: var(--color-header-text);
+}
+
+.header h3 {
+   position: absolute;
+   font-size: 0.9em;
+   top: 4.75em;
+   right: 1em;
+   padding: 0;
+   margin: 0.25em;
+   font-weight: bold;
+   color: var(--color-header-text);
+}
+
+.header div {
+   color: var(--color-header-text);
+}
+
+.header .doctemplate {
+   position: absolute;
+   display: inline-block;
+   font-size: 0.9em;
+   top: 4.5em;
+   right: 2em;
+}
+
+.headergap {
+   margin-top: 45px;
+}
+
+.card {
+   background-color: var(--color-card-bg);
+   box-shadow: 4px 4px 0 0 rgba(0,0,0,.1);
+   margin: 1em auto;
+   margin-top: 30px;
+   width: 80%;
+   min-width: 51em;
+   max-width: 65em;
+   min-height: 36em;
+   padding: 1em;
+   border-radius: 0.25em;
+}
+
+.spinner {
+   display: inline-block;
+   position: absolute;
+   top: 40%;
+   left: 50%;
+   width: 100px;
+   height: 100px;
+   border: 12px solid rgba(220,220,220,0.35);
+   border-top: 12px solid #3498db;
+   border-radius: 50%;
+   margin: -50px;
+   animation: spin .7s linear infinite;
+   background-clip: content-box;
+   z-index: 99;
+}
+
+@keyframes spin {
+  0%   {transform: rotate(0deg)  }
+  100% {transform: rotate(360deg)}
+}
+
+@media (max-width: 1200px){
+   .card {width: 80%}
+}
+
+@media (max-width: 800px){
+   .card {width: 85%}
+}
+
+@media (max-width: 700px){
+   body {
+      font-size: 0.8em;
+   }
+
+   .header {
+      flex: 0 0 55px;
+   }
+
+   .header canvas {
+      height: 60px;
+   }
+
+   .header h1 {
+      font-size: 1.5em;
+      left: 0.2em;
+
+   }
+   .header h2 {
+      font-size: 1em;
+      left: 0.25em;
+      top: 3em;
+   }
+
+   .header h3 {
+      top: 3.5em;
+   }
+
+   .header .logo {
+      display: none;
+   }
+
+   .header .doctemplate {
+       top: 2.5em;
+   }
+
+   .headergap {
+      margin-top: 0;
+   }
+
+   .card {
+      margin: 0;
+      margin-top: 0;
+      width: 100%;
+   }
+}

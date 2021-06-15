@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8"/>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+      <link href="all-expanded.css" rel="stylesheet"/>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="all-expanded.js"></script>
+      <title>Invoice Previewer</title>
+   </head>
+   <body>
+      <div class="header">
+         <a href="/invoices"><img src="images/logo.png" alt="logo" /></a>
+         <h1>Invoice Sample Viewer</h1>
+         <h2>Select invoice or invoice xml to view</h2>
+         <h3><a href="invoice.html">Preview an Invoice XML File</a></h3>
+      </div>
+      <div class="content">
+         <div class="card">
+            <div class="controls">
+               <div class="search">
+                  <input type="text" placeholder="Enter invoice # or bill date" />
+                  <div class="spinner"></div>
+               </div>
+               <div class="checks">
+                  <div class="typechecks">Types:&nbsp;
+                     <input type="checkbox" value="alltypes" checked="checked"/><span>All</span>
+                     <input type="checkbox" value="GeorgiaIndividualInvoice" /><span>Individual</span>
+                     <input type="checkbox" value="GeorgiaIndividualBudgetInvoice" /><span>Budget</span>
+                     <input type="checkbox" value="GeorgiaInfiniteAdvanceInvoice" /><span>Advance</span>
+                     <input type="checkbox" value="GeorgiaTierIndividualInvoice" /><span>Tier</span>
+                     <input type="checkbox" value="GeorgiaGroupInvoice" /><span>Group</span>
+                  </div>
+                  <div class="statechecks">States:
+                     <input type="checkbox" value="allstates" checked="checked"/><span>All</span>
+                     <input type="checkbox" value="pastdue" /><span>PastDue</span>
+                     <input type="checkbox" value="credit" /><span>Credit</span>
+                     <input type="checkbox" value="arrangement" /><span>PayArrangement</span>
+                  </div>
+               </div>
+               <div class="dates">
+                  <select></select>
+               </div>
+            </div>
+            <div class="index">
+               <table>
+                  <thead>
+                     <tr>
+                        <th>Invoice Number</th>
+                        <th>Invoices</th>
+                        <th>XMLs</th>
+                        <th>Date</th>
+                        <th tooltip="Balance Forward">BF</th>
+                        <th>CC</th>
+                        <th>TD</th>
+                        <th>Th</th>
+                        <th>Ct</th>
+                        <th>Bill Type</th>
+                     </tr>
+                  </thead>
+                  <tbody id="rows">
+                  </tbody>
+                  <tfoot>
+                     <tr>
+                        <td colspan=10></td>
+                     </tr>
+                  </tfoot>
+               </table>
+            </div>
+         </div>
+      </div>
+      <template id="row">
+         <tr>
+            <td>
+               <img src="images/clip-mini.png" class="clip" alt="copy to clipboard" />
+               <a href="https://adept.prod.gainesville.infiniteenergy.com/adept/accountmain.aspx?a={acct}" class="acct" target="_blank">{InvoiceNumber}</a>
+            </td>
+            <td>
+               <a href="/invoices/samples/{InvoiceNumber}-old.pdf"                              target="_blank">Old</a>
+               <a href="/invoices/samples/{InvoiceNumber}.pdf"                                  target="_blank">New</a>
+               <a href="/invoices/invoice.html?url=/cgi-bin/preview.pl/invoice/{InvoiceNumber}" target="_blank">Preview</a>
+            </td>
+            <td>
+               <a href="https://billing-invoice.int.gainesville.infiniteenergy.com/accounts/{acct}/invoices/{InvoiceNumber}.xml?language=en-US" target="_blank">OldXML</a>
+               <a href="/cgi-bin/preview.pl/invoice/{InvoiceNumber}"                           target="_blank">NewXML</a>
+            </td>
+            <td>{date}</td>
+            <td>{BalanceForward}</td>
+            <td>{CurrentCharges}</td>
+            <td>{TotalDue}</td>
+            <td>{Therms}</td>
+            <td>{ChargeCount}</td>
+            <td>{BillType}</td>
+         </tr>
+      </template>
+   </body>
+</html>
