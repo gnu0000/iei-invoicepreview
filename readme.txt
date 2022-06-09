@@ -1,3 +1,5 @@
 ** todo **
 
-Various productivity tools used while at IEI
+Preview what a Customer Invoice will look like once rendered
+
+https://craig-fitzgerald.com/
